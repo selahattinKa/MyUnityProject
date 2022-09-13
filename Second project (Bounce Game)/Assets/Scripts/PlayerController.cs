@@ -35,4 +35,30 @@ public class PlayerController : MonoBehaviour
         
         _rb.AddForce(movement*_speed) ;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PickUp"))
+        {
+            //other.gameObject.SetActive(false);
+            Destroy(other.gameObject);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("PickSilver"))
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("PickBronze"))
+        {
+            other.gameObject.SetActive(false);
+            //Destroy(other.gameObject);
+        }
+    }
 }
